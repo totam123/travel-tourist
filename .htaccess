@@ -1,0 +1,34 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+   	<Files .htaccess>
+	order allow,deny
+	deny from all
+	</Files>
+
+	# bảo vệ file wp-config
+    <Files config.php>
+        Order Allow,Deny
+        Deny from all
+    </Files>
+
+	#chuyển hướng file lỗi 
+	#ErrorDocument 404 http://basephp.loca/pages
+
+    #Redirect  http://basephp.loca/pages/ http://basephp.loca/
+
+    RewriteRule index.html index.php
+
+    # chi tiet san pham
+    #RewriteRule ^san-pham/([a-zA-Z0-9_-]+)-([0-9]+).html$ /pages/chi-tiet-san-pham.php?id=$2
+
+    # chi tiet tin tuc
+    RewriteRule ^tin-tuc/([a-zA-Z0-9_-]+)-([0-9]+).html$ /news_detail.php?id=$2
+
+     # danh sach bai viet
+    RewriteRule ^tin-tuc.html$ /list-news.php [QSA]
+
+    #RewriteRule ^dia-diem/([a-zA-Z0-9_-]+)-([0-9]+).html$ /list-tour-location.php?id=$2&&price=$3 [QSA]
+    #RewriteRule ^dia-diem/tat-ca.html$ /list-tour-location.php [QSA]
+    #RewriteRule ^tour/([a-zA-Z0-9_-]+)-([0-9]+).html$ /tour-detail.php?id=$2    [QSA]
+    
+</IfModule>

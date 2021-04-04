@@ -1,0 +1,23 @@
+.box
+{
+    padding: 20px !important;
+}
+.form-group
+{
+    margin-bottom: 5px !important;
+}
+.text-danger
+{
+    color: red;
+}
+td a
+{
+    margin-left: 2px;
+}
+.border
+{
+    border:1px solid #dedede;
+}
+.color-red { color: red !important;font-size: 11px}
+.border-red {border: 1px solid red;}
+.item_product:hover { cursor: pointer}
