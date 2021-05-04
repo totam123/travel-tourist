@@ -22,15 +22,23 @@
         if(empty($errors))
         {
             $admins = DB::fetchOne('admins', ' email = "'.$email.'" and password = "'.md5($password).'" and status = 1  LIMIT 1');
-            if ($admins)
+            if ($admins['level'] === "2")
             {
                 $_SESSION['success'] = " Xin chào " .$admins['name'] . " đã đăng nhập vào hệ thống thành công ";
                 $_SESSION['admin_name']  = $admins['name'];
                 $_SESSION['admin_level'] = $admins['level'];
                 $_SESSION['admin_id']    = $admins['id'];
+                $_SESSION['type'] = 'admin';
                 header("Location: ".path_url().'/admin');exit();
             }
-            
+            else{
+                $_SESSION['success'] = " Xin chào " .$admins['name'] . " đã đăng nhập vào hệ thống thành công ";
+                $_SESSION['admin_name']  = $admins['name'];
+                $_SESSION['admin_level'] = $admins['level'];
+                $_SESSION['admin_id']    = $admins['id'];
+                $_SESSION['type'] = 'other';
+                header("Location: ".path_url().'/admin');exit();
+            }
         }
     }
 ?>

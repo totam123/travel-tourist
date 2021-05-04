@@ -21,23 +21,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $phone = Input::get("u_phone");
     $name = Input::get("u_name");
     $address = Input::get("u_address");
+    $password = Input::get("u_password");
 
     $data = [
         'u_phone' => $phone,
         'u_name'  => $name,
-        'u_address' => $address
+        'u_address' => $address,
+        'u_password' =>$password
     ];
-
-    $password = Input::get('password');
     if ($password)
     {
-        $data['password'] = md5($password);
+        $data['u_password'] = md5($password);
     }
-
-    DB::update('users',$data, array('id' => $userLogin['id']));
-
-    $_SESSION['success'] = 'Cập nhật thông tin thành công';
-    header("Location: ".redirectUrl('/profile.php'));exit();
+   
+    $insert = DB::update('users',$data, array('id' => $userLogin['id']));
+    if ($insert>0) {
+        $_SESSION['success'] = 'Cập nhật thông tin thành công';
+        header("Location: ".redirectUrl('/profile.php'));exit();
+    }
 }
 
 
@@ -103,9 +104,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
                         <div class="form-group">
                             <label>
-                                Mật khẩu<small class="red">*</small>
+                                Mật khẩu
                             </label>
-                            <input type="password" class="form-control" name="password"  value="">
+                            <input type="text" class="form-control" name="u_password" 
+                            value="" 
+                            required>
                         </div>
 
 

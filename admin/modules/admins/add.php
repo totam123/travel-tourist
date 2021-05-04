@@ -66,10 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> <?= isset($title_global) ? $title_global : 'Trang admin ' ?>  </title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php require_once __DIR__ .'/../../layouts/inc_css.php'; ?>
 </head>
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -93,13 +90,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     <div class="col-md-10 col-sm-offset-1">
                     <div class="box box-primary">
                             <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="ZPEdLE4Il64joczf4kmj8Q9eQBvPxcz1qVZwfLOB">
                                 <div class="box-body">
-
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label"> Họ tên </label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="hoten" id="inputEmail3" placeholder="Nguyen Van A" autocomplete="off" value="<?= isset($hoten) ? $hoten : ''?>">
+                                            <input type="text" class="form-control" name="hoten" id="inputEmail3" placeholder="Nguyen Thi B" autocomplete="off" value="<?= isset($hoten) ? $hoten : ''?>">
                                             <?php if(isset($errors['hoten'])) :?>
                                                 <span class="color-red"><?= $errors['hoten'] ?></span>
                                             <?php endif ;?>
@@ -118,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label">  Số điện thoại </label>
                                         <div class="col-sm-10">
-                                            <input type="number" class="form-control" name="sodienthoai" id="inputEmail3" placeholder="0987654321" autocomplete="off" value="<?= isset($sodienthoai) ? $sodienthoai : ''?>">
+                                            <input type="number" class="form-control" name="sodienthoai" id="inputEmail3" placeholder="0564841529" autocomplete="off" value="<?= isset($sodienthoai) ? $sodienthoai : ''?>">
                                             <?php if(isset($errors['sodienthoai'])) :?>
                                                 <span class="color-red"><?= $errors['sodienthoai'] ?></span>
                                             <?php endif ;?>

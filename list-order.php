@@ -44,7 +44,6 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Tên Tour</th>
                             <th>Số người</th>
                             <th>Giá</th>
@@ -56,12 +55,11 @@
                         <tbody>
                         <?php foreach($tour as $t) :?>
                         <tr>
-                            <td>[<?= $t['id'] ?>]</td>
                             <td><a target="_blank" href="tour-detail.php?id=<?= $t['id'] ?>"><?= $t['t_name'] ?></a></td>
                             <td><?= $t['b_number_guests'] ?></td>
                             <td><?= number_format($t['b_price'],0,',','.') ?> VNĐ</td>
                             <td><?= number_format($t['b_total'],0,',','.') ?> VNĐ</td>
-                            <td><a class="label <?= $t['b_status'] == 1  ? 'label-success' : 'label-default' ?>" href="javascript:;void(0)"> <?= $t['b_status'] == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' ?> </a></td>
+                            <td><a class="label <?= $t['b_status'] == 1  ? 'label-success' : 'label-default' ?>" href="javascript:;void(0)"> <?= $t['b_status'] == 0 ? 'Chờ xác nhận' : 'Đã xác nhận' ?> </a></td>
                             <td>
                                 <?php if($t['b_status'] == 0) :?>
                                 <a href="delete_tour_item.php?id=<?= $t['id'] ?>" class="label label-danger">Huỷ tour</a>

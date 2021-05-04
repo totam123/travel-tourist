@@ -17,9 +17,6 @@
         $customer_phone   = Input::get("customer_phone");
         $customer_email   = Input::get("customer_email");
         $customer_address = Input::get("customer_address");
-        $b_start_date     = Input::get("b_start_date");
-        $b_end_date       = Input::get("b_end_date");
-
 
         // kiểm tra lỗi
         if($customer_name == '')
@@ -48,17 +45,6 @@
         {
             $errors['customer_address'] = ' Mời bạn điền đầy đủ thông tin';
         }
-
-        if ($b_start_date =='')
-        {
-            $errors['b_start_date'] = 'Bạn cần chọn ngày đi';
-        }
-
-        if ($b_end_date =='')
-        {
-            $errors['b_end_date'] = 'Bạn cần chọn ngày về';
-        }
-
     
         if(empty($errors))
         {
@@ -87,9 +73,7 @@
                     'b_user_id' => $id_insert,
                     'b_number_guests' => $_SESSION['cart']['number'],
                     'b_price'   => $_SESSION['cart']['price'] * $_SESSION['cart']['sale'],
-                    'b_total'   => $_SESSION['cart']['price'] * $_SESSION['cart']['number'],
-                    'b_start_date'    => $b_start_date,
-                    'b_end_date'      =>$b_end_date,
+                    'b_total'   => $_SESSION['cart']['price'] * $_SESSION['cart']['number']
                 ];
 
                 $book_check = DB::insert('book_tours',$data_book_tour);
@@ -103,7 +87,7 @@
                     $_SESSION['danger'] = 'Xử lý thất bại mời bạn dặt lại';
                 }
 
-                header("Location: ".redirectUrl('/alert.php'));exit();
+                header("Location: ".redirectUrl('/'));exit();
             }else
             {
                 if ( $userLogin)
@@ -121,10 +105,7 @@
                         'b_user_id'       => $userLogin['id'],
                         'b_number_guests' => $_SESSION['cart']['number'],
                         'b_price'         => $_SESSION['cart']['price'],
-                        'b_total'         => $_SESSION['cart']['price'] * $_SESSION['cart']['number'],
-                        
-                        'b_start_date'    => $b_start_date,
-                        'b_end_date'      =>$b_end_date,
+                        'b_total'         => $_SESSION['cart']['price'] * $_SESSION['cart']['number'],                  
                     ];
                     
                     $book_check = DB::insert('book_tours',$data_book_tour);
@@ -166,15 +147,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Đặt phòng khách sạn, hotel trực tuyến hàng đầu Việt Nam</title>
+    <title>Đặt tour du lịch Việt Nam</title>
     <meta name="description" content="">
     <link rel="canonical" href="/" />
-    <!-- mytour:css -->
     <link href="/public/frontend/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="page-home">
 <?php include_once  __DIR__. '/layouts/inc_nav.php' ?>
-
+<div class="slider-lg" style="background:#FFEBCD">
+           <div class="slider-content"style="background:#FFEBCD">
+              <div class="bg-full" style="background:url(<?= path_url() ?>/public/images/logo/li.jpg) center top">
+              </div>
+           </div>
+</div>
 <div class="container profile-page sign-up">
     <div class="row">
         <div class="col-md-12 mg-t-40 mg-bt-40">
@@ -182,7 +167,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Tên Tour</th>
                             <th>Số Người</th>
                             <th>Số Tiền</th>
@@ -193,7 +177,6 @@
                     <tbody>
                     <form action="" method="POST">
                             <tr>
-                                <td><?= $_SESSION['cart']['id'] ?></td>
                                 <td><?= $_SESSION['cart']['name'] ?></td>
                                 <td><input type="number" min="1" value="<?= $_SESSION['cart']['number'] ?>" name="qty"></td>
                                 <td><?= formatPrice($_SESSION['cart']['price']) ?>đ</td>
@@ -203,7 +186,6 @@
                                     <button type="submit" class="btn">Cập nhật</button>
                                 </td>
                             </tr>
-
                     </form>
 
                     </tbody>
@@ -223,7 +205,7 @@
             <!-- booking -->
             <div class="booking-info text-header-margin">
                 <div class="col-sm-12 col-md-4">
-                    <div class="box box-blue " style="height: 650px;">
+                    <div class="box box-blue ">
                         <div class="box-header">
                             <h3 class="box-title">
                                 <span class="rounded">1</span>
@@ -262,21 +244,6 @@
                                         <p class="help-block red"><?php echo $errors['customer_address'] ?></p>
                                     <?php endif ; ?>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Ngày đi</label>
-                                    <input type="date" id="b_start_date" class="form-control info_customer_book" name="b_start_date" value="">
-                                    <?php if (isset($errors['b_start_date'])) :?>
-                                        <p class="help-block red"><?php echo $errors['b_start_date'] ?></p>
-                                    <?php endif ; ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ngày Về</label>
-                                    <input type="date" id="b_end_date" class="form-control info_customer_book" name="b_end_date" value="">
-                                    <?php if (isset($errors['b_end_date'])) :?>
-                                        <p class="help-block red"><?php echo $errors['b_end_date'] ?></p>
-                                    <?php endif ; ?>
-                                </div>
                             <?php else :?>
                                 <div class="form-group">
                                     <label>Họ và tên <small class="red">*</small></label>
@@ -306,27 +273,12 @@
                                         <p class="help-block red"><?php echo $errors['customer_address'] ?></p>
                                     <?php endif ; ?>
                                 </div>
-                                <div class="form-group">
-                                    <label>Ngày đi</label>
-                                    <input type="date" id="b_start_date" class="form-control info_customer_book" name="b_start_date" value="">
-                                    <?php if (isset($errors['b_start_date'])) :?>
-                                        <p class="help-block red"><?php echo $errors['b_start_date'] ?></p>
-                                    <?php endif ; ?>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ngày Về</label>
-                                    <input type="date" id="b_end_date" class="form-control info_customer_book" name="b_end_date" value="">
-                                    <?php if (isset($errors['b_end_date'])) :?>
-                                        <p class="help-block red"><?php echo $errors['b_end_date'] ?></p>
-                                    <?php endif ; ?>
-                                </div>
                             <?php endif ;?>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                    <div class="box box-blue" style="height: 650px;">
+                    <div class="box box-blue">
                         <div class="box-header">
                             <h3 class="box-title">
                                 <span class="rounded">2</span>
@@ -336,15 +288,15 @@
                         <div class="box-body">
                             <div class="product-image">
                                 
-                                <a href="/tour/<?= str_slug($tour['t_name']) ?>-<?= $tour['id'] ?>.html">
-                                        <img  data-src="<?php echo path_url() ?>/uploads/tours/<?= $tour['t_images'] ?>" src="<?php echo path_url() ?>/uploads/tours/<?= $tour['t_images'] ?>" alt="" class="img-responsive">
+                                <a href="tour-detail.php?id=<?= $tour['id'] ?>">
+                                        <img data-src="<?php echo path_url() ?>/uploads/tours/<?= $tour['t_images'] ?>" src="<?php echo path_url() ?>/uploads/tours/<?= $tour['t_images'] ?>" alt="" title="" class="img-responsive">
                                 </a>
                             </div>
                             <h3 class="title-sm">
                                 <?php echo $tour['t_name'] ?>
                             </h3>
                         
-                            <dl class="nav-dl-list"  style="margin-top: 90px;">
+                            <dl class="nav-dl-list"  style="margin-top: 10px;">
                                 <button id="submit_booking" type="submit" class="btn btn-lg btn-block btn-yellow mg-bt-15">Hoàn thành</button>
                             </dl>
                         </div>
@@ -362,7 +314,7 @@
                             <div class="row">
                                 <div class="col-xs-8 col-xs-offset-2 text-center">
                                     <a id="back_to_detai_tour" class="change-info-room customize-button-change-tour" data-href="/tour/9132-tour-du-lich-ha-noi-ha-long-ninh-binh-trong-4-ngay-3-dem.html" data-toggle="modal" data-target="#ModalAlertBackDetail">
-                                        Bạn muốn tìm tour khác?
+                                        Gói tour của Quý khách đang chờ xác nhận
                                     </a>
                                 </div>
                             </div>
@@ -371,20 +323,18 @@
                             </div>
                             <ul class="nav-list">
                                 <li>
-                                    Quý khách có thể thanh toán trước bằng thẻ <a href="#" data-toggle="modal" data-target="#ModalPayOnline"> tại đây.</a>
-                                </li>
-                                <li>
                                     Mytour sẽ liên hệ với quý khách (qua email hoặc điện thoại) trong vòng <strong class="green text-sm"> 30 phút </strong> (T2-CN: 08:00 - 23:00) để xác nhận tour và thời hạn thanh toán.
                                 </li>
                                 <li>
-                                    Quý khách sẽ thanh toán (tại nhà, tại Mytour, chuyển khoản hay thẻ) sau khi có xác nhận còn tour từ Mytour.
+                                    Quý khách sẽ thanh toán trực tiếp tại Mytour sau khi có xác nhận còn tour từ Mytour.
                                 </li>
                                 <li>
-                                    Trường hợp Quý khách muốn xác nhận ngay, vui lòng liên hệ với Mytour theo Hotline:
+                                    Trường hợp Quý khách muốn xác nhận ngay, vui lòng liên hệ với Mytour theo Hotline
                                     <br>
-                                    <strong>Hà Nội: 0913767674</strong>
-                                    <br>
-                                    <strong>Hồ Chí Minh: 0564841529</strong>
+                                    <strong>Bình Dương: 0564841529</strong>
+                                </li>
+                                <li>
+                                    <strong>Quý khách có thể thanh toán online tại mục 4</strong>
                                 </li>
                             </ul>
 
@@ -398,6 +348,35 @@
         <input type="hidden" name="payment_method" id="payment_method" value="1">
         <input type="hidden" name="payment_bank" id="payment_bank" value="0">
     </form>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="box box-blue">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <span class="rounded">4</span>
+                    Thanh toán điện tử
+                </h3>
+            </div>
+            <div class="box-body">
+                <h4>Nếu Quý khách không mang theo tiền mặt, không sao dã có dịch vụ thanh toán điện tử của chúng tôi</h4>
+                <form method="POST" action="payment-online.php">
+                    <?php if(!empty($userLogin['u_name']) && !empty($userLogin['u_email'])): ?>
+                        <input type="hidden" name="name" value="<?= $userLogin['u_name'] ?>" />
+                        <input type="hidden" name="email" value="<?= $userLogin['u_email'] ?>" />
+                    <?php endif; ?>
+                    <input type="hidden" name="b_tour_id" value="<?= $_SESSION['cart']['id'] ?>" />
+                    <input type="hidden" name="amount" value="<?= $_SESSION['cart']['price'] * $_SESSION['cart']['number'] ?>" />
+                    <input type="hidden" name="b_number_guests" value="<?= $_SESSION['cart']['number'] ?>" />
+                    <input type="hidden" name="b_price" value="<?= $_SESSION['cart']['price'] ?>" />
+                    <?php if(isset($_SESSION['id_user'])): ?>
+                        <input type="hidden" name="b_user_id" value="<?= $_SESSION['id_user'] ?>" />
+                    <?php endif; ?>
+                    <button type="submit" name="send" class="btn btn-lg btn-block btn-yellow mg-bt-15">THANH TOÁN ÐIỆN TỬ</button>
+                </form>
+            </div>
+        </div>                           
+        </div>
+    </div>
 </div>
 <?php include_once  __DIR__. '/layouts/inc_footer.php' ?>
 

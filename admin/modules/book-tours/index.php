@@ -6,7 +6,7 @@
 $sql = "SELECT book_tours.* ,book_tours.id as idtour ,tours.* , users.* FROM book_tours 
         LEFT JOIN tours ON book_tours.b_tour_id = tours.id 
         LEFT JOIN users ON book_tours.b_user_id = users.id
-        WHERE 1 ";
+        ORDER BY book_tours.created_at DESC";
     $book_tour = Pagination::pagination('book_tours',$sql,'page',15);
 ?>
 
@@ -50,16 +50,14 @@ $sql = "SELECT book_tours.* ,book_tours.id as idtour ,tours.* , users.* FROM boo
                                 <th>Thông tin</th>
                                 <th style="width: 20%">Tour Đặt</th>
                                 <th>Số tiền</th>
-                                <th>Ngày đi</th>
-                                <th>Ngày trở về</th>
                                 <th>Trang thái</th>
                                 <th>Thao tác</th>
                             </tr>
                             <?php if($book_tour)  :?>
-                                <?php foreach ($book_tour as $key => $bt): ?>
+                                <?php foreach ($book_tour as $bt): ?>
                                     <tr>
                                         <td>
-                                            <?= $key + 1 ?>
+                                            <?= $bt['idtour'] ?>
                                         </td>
                                         <td> 
                                             <p>Tên khách hàng  : <?= $bt['u_name'] ?></p>
@@ -68,10 +66,12 @@ $sql = "SELECT book_tours.* ,book_tours.id as idtour ,tours.* , users.* FROM boo
                                         </td>
                                         <td> <?= $bt['t_name'] ?></td>
                                         <td> <?= number_format($bt['b_total'],0,',','.') ?> VNĐ</td>
-                                        <td> <?= $bt['b_start_date'] ?></td>
-                                        <td> <?= $bt['b_end_date'] ?></td>
                                         <td>
+                                        <?php if($_SESSION['type'] === 'admin'): ?>
                                             <a href="active.php?id=<?= $bt['idtour'] ?>" class="custome-btn label <?= $bt['b_status'] == 1 ? 'label-info' : 'label-default' ?>"><span><?= $bt['b_status'] == 1 ? 'Đã thanh toán' : 'Chưa thanh toán ' ?></span></a>
+                                        <?php else: ?>
+                                            <div class="custome-btn label <?= $bt['b_status'] == 1 ? 'label-info' : 'label-default' ?>"><span><?= $bt['b_status'] == 1 ? 'Đã thanh toán' : 'Chưa thanh toán ' ?></span></div>
+                                        <?php endif; ?>
                                         </td>
                                         <td>
                                             <a href="delete.php?id=<?= $bt['idtour'] ?>" class="custome-btn btn-danger btn-xs delete comfirm_delete" ><i class="fa fa-trash"></i> Xoá </a>

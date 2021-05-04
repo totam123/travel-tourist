@@ -11,14 +11,14 @@ $locations_footer  = DB::query('locations','*',' and loc_hot = 1 ');
             </div>
             <div class="col-sm-4">
                 <h5 class="footer-title">
-                    Công ty TNHH TRAVEL Tâm Việt Nam
+                    Công ty CP TM DV Du lịch TAM
                 </h5>
                 <div class="contact-mytour">
                     <ul class="list-unstyled mg-bt-30">
-                        <li>Bình Dương: 0564841529 </li>
+                        <li>Bình Dương: 0564841529</li>
                         <li>Hà Nội: 0913767674 </li>
                         <li>Email: totam9991@gmail.com</li>
-                        <li>Văn phòng Bình Dương: Bến Cát, Bình Dương</li>
+                        <li>Văn phòng Bình Dương: Trường Đại học Thủ Dầu Một, Bình Dương</li>
                         <li>Văn phòng Hà Nội: Thái Bình, Hà Nội</li>
                     </ul>
 

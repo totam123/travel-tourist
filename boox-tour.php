@@ -20,6 +20,7 @@
         unset($_SESSION['url_redirect']) ;
 
         header("Location: ".redirectUrl().$url);exit();
+        
     }else
     {
         if( !isset($_SESSION['cart']))

@@ -39,7 +39,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container profile-page sign-up">
     <div class="row">
         <div class="col-md-10 col-sm-offset-1 mg-t-40 mg-bt-40">
-            <!-- NEW -->
             <div class="box">
                 <table class="table">
                     <thead>

@@ -8,6 +8,11 @@
     $sql = "SELECT tours.* , locations.loc_name FROM tours 
             LEFT JOIN locations ON locations.id = tours.t_location_id
             WHERE 1 and t_status = 1 ";
+    $keyword = Input::get('keyword');
+    if ( $keyword ) {
+        $sql .= ' AND   t_name LIKE \'%'.$keyword.'%\'' ;
+        $filter['keyword'] = $keyword;
+    }
     if ($loca) 
     {
         $filter['location'] = $loca;
@@ -46,9 +51,33 @@
 <body class="page-hotel-listing">
 
 <?php include_once  __DIR__. '/layouts/inc_nav.php' ?>
-<div id="searchfixed" class="search-fixed">
-
-</div>
+        <div class="slider-lg" style="background:#FFEBCD">
+           <div class="slider-content"style="background:#FFEBCD">
+              <div class="bg-full" style="background:url(<?= path_url() ?>/public/images/logo/li.jpg) center top">
+              </div>
+              <div class="container">
+                 <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                       <div class="box-search"style="background:#ed0080">
+                          <div class="box-search-header">
+                             <h1 class="mg-0 mg-bt-5 h2" title="Đặt tour du lịch Việt Nam và quốc tế">Bạn muốn đi du lịch ở đâu?</h1>
+                          </div>
+                          <form class="form-search" action="/tim-kiem.php">
+                                <input  style="margin-bottom: 40px" type="text" class="form-control" id="header-search" name="location" autocomplete="off" placeholder="Tìm kiếm theo địa điểm hoạc tên tour ">
+                             </div>
+                             <div class="form-group row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                   <button style="margin-top: 20px;" type="submit" class="btn btn-block btn-lg btn-yellow">Tìm Tour</button>
+                                </div>
+                             </div>
+                          </form>
+                          <div id="suggesstion-box"></div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
 <div class="container">
     <div class="row">
         <div class="col-xs-12" import-html="breadcrumb">
@@ -86,37 +115,37 @@
                     </div>
                 </div>
             </div>
-            <div class="group-filter">
+            <!-- <div class="group-filter">
                 <div class="device-pc-none mg-r-20">
                     <a class="btn btn-blue btn-filter-show" href="javascript:;">
                         <i class="fa fa-bars"></i> Bộ lọc
                     </a>
                 </div>
 
-            </div>
+            </div> -->
             <div class="product product-tour">
                 <?php foreach($tours as $tou) :?>
                     <div class="product-item row">
                         <div class="col-sm-9">
                             <h2 class="title-sm h3" title="">
-                                <a class="product-name" href="/tour/<?= str_slug($tou['t_name']) ?>-<?= $tou['id'] ?>.html"><?= $tou['t_name'] ?></a>
+                                <!-- <a class="product-name" href="/tour/<?= str_slug($tou['t_name']) ?>-<?= $tou['id'] ?>.html"><?= $tou['t_name'] ?></a> -->
+                                <a class="product-name" href="#"><?= $tou['t_name'] ?></a>
                             </h2>
                         </div>
                         <div class="product-left-content col-sm-9">
                             <div class="product-info">
                                 <div class="product-image">
-                                    <a href="/tour/<?= str_slug($tou['t_name']) ?>-<?= $tou['id'] ?>.html">
+                                    <!-- <a href="/tour/<?= str_slug($tou['t_name']) ?>-<?= $tou['id'] ?>.html">
                                         <img data-src="<?php echo path_url() ?>/uploads/tours/<?= $tou['t_images'] ?>" src="<?php echo path_url() ?>/uploads/tours/<?= $tou['t_images'] ?>" alt="" title="" class="img-responsive">
-                                    </a>
-                                    <a href="#" class="schedule" mytour-ext="ajax-modal" modal-name="modal-tour-schedule" data-tourid="140">
-                                        <i class="fa fa-chevron-circle-right blue"></i> <span class="gray">Lịch trình</span>
+                                    </a> -->
+                                    <a href="#">
+                                        <img data-src="<?php echo path_url() ?>/uploads/tours/<?= $tou['t_images'] ?>" src="<?php echo path_url() ?>/uploads/tours/<?= $tou['t_images'] ?>" alt="" title="" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <ul class="nav list-unstyled device-mb-none">
-                                        <li><strong>Ngày khởi hành:</strong> Hàng ngày</li>
                                         <li><strong>Thời gian:</strong> <?= array_key_exists($tou['t_time'],$arrayTime) ? $arrayTime[$tou['t_time']] : 'Đang cập nhật' ?></li>
-                                        <li><strong>Điểm khởi hành:</strong> Hà Nội</li>
+                                        <li><strong>Điểm khởi hành:</strong> Bình Dương</li>
                                         <li><strong>Dành cho :</strong> <?= $tou['t_number_guests'] ?> người </li>
                                         <li><strong>Phương tiện:</strong>  <?= array_key_exists($tou['t_vehicle'],$arrayVehicle) ? $arrayVehicle[$tou['t_vehicle']] : 'Đang cập nhật' ?></li>
                                     </ul>
@@ -136,20 +165,23 @@
                             </div>
                         </div>
                         <div class="product-right-content col-sm-3">
-                            <div class="box-review">
-                                <span class="rate">8</span>
-                                <span class="rate-info">Xuất sắc</span>
-                            </div>
-                            <div class="box-price">
-                                <div class="item-price">
-                                    <br>
-                                    <strong class="price"><?= formatPrice($tou['t_price'],$tou['t_sale']) ?><small>đ</small></strong>
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
                                 </div>
-                                <a class="btn btn-yellow" href="/tour/<?= str_slug($tou['t_name']) ?>-<?= $tou['id'] ?>.html">
+                                <div class="box-price"style="background:#FFEBCD">
+                                    <div class="item-price">
+                                        <br>
+                                        <strong class="price"><?= formatPrice($tou['t_price'],$tou['t_sale']) ?><small>đ</small></strong>
+                                    </div>
+                                    <a class="btn btn-yellow" href="tour-detail.php?id=<?= $tou['id'] ?>">
                                     Xem tour
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
                         <div class="col-xs-12">
                             <hr class="dark">
                         </div>
@@ -168,33 +200,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12">
-            <div class=" listing-title">
-            </div>
-            <input type="hidden" id="listing-places" value="">
-            <div id="place-near-box" class="box box-view-more box-custom-position hidden">
-                <div class="box-header">
-                    <h2 class="box-title">
-                        Địa danh gần khách sạn
-                    </h2>
-                </div>
-                <div class="box-body over_hidden">
-                    <ul class="nav-thumbnails nav-thumbnails-list clearfix">
-                    </ul>
-                    <button class="btn-link btn-view-more" data-more="">
-                        Xem thêm
-                    </button>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <div class="footer">
     <?php include_once  __DIR__. '/layouts/inc_footer.php' ?>
-    <!-- /menu-footer -->
 </div>
-<!-- mytour:js -->
+
 <script src="/public/frontend/js/main.js" type="text/javascript" /></script>
 </body>
 </html>

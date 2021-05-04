@@ -78,3 +78,7 @@ $typeNews = [
     2 => 'Giới thiệu khách sạn',
     3 => 'Giới thiệu nhà hàng'
 ];
+
+// Stripe
+define("STRIPE_SECRET_KEY", "sk_test_51IevYbK7nOehjoyWo9NMd2VHgm30fC6eExzmMkCsek4dcYLBiS7uOn83QhuVwcFp0Hm4HThbVQrOeBR2lGYWQfmu00D6092bQK");
+define("STRIPE_PUBLISHABLE_KEY", "pk_test_51IevYbK7nOehjoyWtEBW4pHkiFgCNrLA2c1q4CEdraYFuyV4kkNm1cteIrCB41sQhyqSyWetndyptgmSLxnFDoGa00diqVSnL0");

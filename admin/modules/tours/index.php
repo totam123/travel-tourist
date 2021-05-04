@@ -93,10 +93,12 @@
                         </div>
                     </div>
                     <div class="box">
+                    <?php if($_SESSION['type'] === 'admin'): ?>
                         <div class="box-header with-border">
                             <a href="add.php" class="btn btn-xs btn-success"><i class="fa fa-plus"></i> Thêm mới </a>
                             <span> Kết quả tìm kiếm : </span>
                         </div>
+                    <?php endif; ?>
                         <div class="box-body">
                             <div class="box-body table-responsive no-padding">
                                 <table class="table table-hover border">

@@ -6,18 +6,16 @@
 	$countUsers = DB::countTable('users');
 	$countNews = DB::countTable('news');
 	// doanh thu ngay
-	$day = date('d');
-	$sqltime2= "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND DAY(`created_at`) = $day";
+	$sqltime2= "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND DAY(`created_at`) = DAY(NOW()) AND MONTH(`created_at`) = MONTH(NOW())";
 	$amountDay = DB::fetchsql($sqltime2);
 	//doanh thu thang
-	$month = date('m');
-	$sqltime3 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND MONTH(`created_at`) = $month";
+	$sqltime3 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND MONTH(`created_at`) = MONTH(NOW())";
 	$amountMonth = DB::fetchsql($sqltime3);
 	//doanh thu theo tuan
-	$sqltime4 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND YEARWEEK(`created_at`, 1) = YEARWEEK(CURDATE(), 1) AND MONTH(`created_at`) = $month";
+	$sqltime4 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND YEARWEEK(`created_at`, 1) = YEARWEEK(CURDATE(), 1) AND MONTH(`created_at`) = MONTH(NOW())";
 	$amountWeek = DB::fetchsql($sqltime4);
 	//tong doanh thu
-	$sqltime5 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE 1";
+	$sqltime5 = "SELECT SUM(b_total) as doanhthu FROM book_tours WHERE b_status = 1 AND YEAR(`created_at`) = YEAR(NOW())";
 	$amountSum = DB::fetchsql($sqltime5);
 ?>
 <!DOCTYPE html>
@@ -54,7 +52,7 @@
                                         <div class="icon">
                                             <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="/admin/modules/locations" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="/admin/modules/locations" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-xs-6">
@@ -66,7 +64,7 @@
                                         <div class="icon">
                                             <i class="ion ion-stats-bars"></i>
                                         </div>
-                                        <a href="/admin/modules/tours" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="/admin/modules/tours" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-xs-6">
@@ -78,7 +76,7 @@
                                         <div class="icon">
                                             <i class="ion ion-person-add"></i>
                                         </div>
-                                        <a href="/admin/modules/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="/admin/modules/users" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-xs-6">
@@ -90,7 +88,7 @@
                                         <div class="icon">
                                             <i class="ion ion-pie-graph"></i>
                                         </div>
-                                        <a href="/admin/modules/news" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="/admin/modules/news" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +102,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" style="width: 70%"></div>
                                             </div>
-
+                                        <a href="/admin/modules/doanhthu/day.php" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +115,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" style="width: 70%"></div>
                                             </div>
-
+                                            <a href="/admin/modules/doanhthu/week.php" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +128,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" style="width: 70%"></div>
                                             </div>
-
+                                            <a href="/admin/modules/doanhthu/month.php" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +141,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar" style="width: 70%"></div>
                                             </div>
+                                            <a href="/admin/modules/doanhthu/year.php" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

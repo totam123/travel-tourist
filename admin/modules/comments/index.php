@@ -2,8 +2,9 @@
     $modules = 'comments';
     $title_global = 'Danh Sách Comments ';
     require_once __DIR__ .'/../../autoload.php';
-    $sql = "SELECT comments.* ,  users.u_email  FROM comments 
+    $sql = "SELECT comments.*, users.u_email, tours.t_name tour_name  FROM comments 
         LEFT JOIN  users  ON users.id = comments.c_user_id
+        LEFT JOIN tours ON tours.id = comments.c_tour_id
         WHERE 1
     ";
     $filter = [];
@@ -89,6 +90,7 @@
                                             <th>ID</th>
                                             <th style="width: 30%">Email</th>
                                             <th>Nội Dung</th>
+                                            <th>Tiêu Đề</th>
                                             <th>Ngày bình luận</th>
                                             <th>Action</th>
                                         </tr>
@@ -97,6 +99,7 @@
                                                 <td><?= $comment['id'] ?></td>
                                                 <td><?= $comment['u_email'] ?></td>
                                                 <td><?= $comment['c_content'] ?></td>
+                                                <td><?= $comment['tour_name'] ?></td>
                                                 <td><?= $comment['created_at'] ?></td>
                                                 <td>
                                                     <a href="delete.php?id=<?= $comment['id'] ?>" class="custome-btn btn-danger btn-xs delete comfirm_delete" ><i class="fa fa-trash"></i> Xoá </a>

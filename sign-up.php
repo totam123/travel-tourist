@@ -27,6 +27,9 @@
             // nếu giá trị trống thì gán vào 1 mảng lỗi 
             $errors['email'] = ' Mời bạn điền đầy đủ thông tin';
         }
+        elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "E-mail không hợp lệ"; 
+        }
         else
         {
             // check xem email da trung chua
@@ -125,7 +128,7 @@
                             <?php endif ; ?>
                         </div>
                         <div class="form-group text-center mg-bt-20">
-                            <p class="help-block" style="font-size: 10px">Chọn đăng ký là bạn đã đồng ý với các <a href="">Điều khoản dịch vụ</a> của Websitedulich.vn</p>
+                            <p class="help-block" style="font-size: 10px">Chọn đăng ký là bạn đã đồng ý với các <a href="">Điều khoản dịch vụ</a> của TAM Travel</p>
                             <button type="submit" class="events-tracking btn btn-block-center btn-blue" data-category="Sign up" data-action="Signup" data-label="">Đăng ký</button>
                         </div>
                     </form>
@@ -143,83 +146,14 @@
 
         <div class="col-md-5 col-md-offset-1 mg-t-40 mg-bt-40">
             <div class="box benefit">
-                <p class="special"><b>Lợi ích khi tạo tài khoản</b></p>
-                <p><i class="fa fa-check-circle green-dark-1"></i>Đặt phòng với giá giảm đến 40%.</p>
-                <p><i class="fa fa-check-circle green-dark-1"></i>Tích lũy điểm thưởng Vpoint với mỗi đơn phòng.</p>
+                <p class="special" style="color:green;font-size:30px;"><b>Lợi ích khi tạo tài khoản</b></p>
+                <p><i class="fa fa-check-circle green-dark-1"></i>Đặt phòng với giá giảm đến 20%.</p>
+                <p><i class="fa fa-check-circle green-dark-1"></i>Tích lũy điểm thưởng với mỗi đơn tour.</p>
                 <p><i class="fa fa-check-circle green-dark-1"></i>Nhận ưu đãi đặc biệt chỉ dành cho thành viên.</p>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- modal NhanGiaTotModal-->
-<div class="modal modal-blue fade" id="getGoodPrice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <p class="modal-title" id="exampleModalLabel">XEM BÁO GIÁ QUA EMAIL</p>
-            </div>
-            <div class="modal-body">
-                <div class="show_error alert alert-info">
-                    <strong>Giá tốt nhất</strong> sẽ thay đổi theo ngày nhận phòng của bạn.
-                </div>
-                <form class="form-search form-search-date" data-toggle="validator" role="form" id="requesPrice">
-                    <div class="form-group">
-                        <div class="box-search box_js_arrow">
-                            <div class="form-search ">
-                                <div class="mt-datepicker t-datepicker js_arrow datepicker-modal">
-                                    <div class="t-check-in"></div>
-                                    <div class="t-check-out"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <input id="good_price_checkin" type="hidden" class="form-control datepicker-df check-in"
-                               value="04/07/2018" name="check-in"/>
-                        <input id="good_price_checkout" type="hidden" class="form-control datepicker-df check-out"
-                               value="05/07/2018" name="check-out"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Tên khách hàng<small class="red">*</small></label>
-                        <input type="text" name="name" required class="form-control cus_name" tabindex="1" data-error="Tên khách hàng không chính xác!" value="">
-                        <p class="help-block red with-errors"></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Email<small class="red">*</small></label>
-                        <input type="email" name="email" required class="form-control cus_email" tabindex="2" placeholder="example@gmail.com" data-error="Email không hợp lệ!" value="">
-                        <p class="help-block red with-errors"></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Số điện thoại<small class="red">*</small></label>
-                        <input type="tel" data-minlength="9" name="phone" required class="form-control cus_phone" tabindex="3" data-error="Số điện thoại không chính xác!" value="">
-                        <p class="help-block red with-errors"></p>
-                    </div>
-                    <input type="hidden" class="hot_id get_good_price" name="hot_id" value=""/>
-                    <input type="hidden" class="cus_type cus_good_price" name="cus_type" value="">
-                    <input type="hidden" class="room_id room_info_price" name="room_id" value=""/>
-                    <input type="hidden" class="rate_id rate_info_price" name="rate_id" value="" />
-                    <input type="hidden" class="events-tracking" data-category="Request_price_Submit" data-route="home" data-action="Listing" data-label="non member">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="text-center">
-                    <button type="button" class="btn btn-gray" data-dismiss="modal">Huỷ</button>
-                    <button type="submit" class="btn btn-blue cl-request-price">Gửi yêu cầu</button>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <?php include_once  __DIR__. '/layouts/inc_footer.php' ?>
 </body>
-
-<div class="modal modal-blue fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    </div>
-    </div>
-    </div>
     </html>

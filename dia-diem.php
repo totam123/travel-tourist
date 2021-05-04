@@ -46,11 +46,33 @@
 <body class="page-hotel-listing">
 
 <?php include_once  __DIR__. '/layouts/inc_nav.php' ?>
-<!-- search-fixed -->
-<div id="searchfixed" class="search-fixed"style="background:#FFEBCD">
-
+<div class="slider-lg" style="background:#FFEBCD">
+    <div class="slider-content"style="background:#FFEBCD">
+        <div class="bg-full" style="background:url(<?= path_url() ?>/public/images/logo/li.jpg) center top">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <div class="box-search"style="background:#ed0080">
+                        <div class="box-search-header">
+                             <h1 class="mg-0 mg-bt-5 h2" title="Đặt tour du lịch Việt Nam và quốc tế">Bạn muốn đi du lịch ở đâu?</h1>
+                        </div>
+                        <form class="form-search" action="/tim-kiem.php">
+                                <input  style="margin-bottom: 40px" type="text" class="form-control" id="header-search" name="location" autocomplete="off" placeholder="Tìm kiếm theo địa điểm hoạc tên tour ">
+                            </div>
+                            <div class="form-group row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                            <button style="margin-top: 20px;" type="submit" class="btn btn-block btn-lg btn-yellow">Tìm Tour</button>
+                            </div>
+                            </div>
+                        </form>
+                    <div id="suggesstion-box"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /search-fixed -->
 <div class="container">
     <div class="row">
         <!-- breadcrumb -->
@@ -74,42 +96,10 @@
             <!-- page-header -->
             <div class="page-header">
                 <div class="clearfix">
-                    <h1 title="" class="title-lg pull-left">
-                        <a href="">Danh sách tours</a>
-                    </h1>
-                    <small class="text-df" style="line-height:42px;padding-left:10px;">
-
-                    </small>
+                    <h2 title="" class="title-lg pull-left"style="color:blue;font-size:30px;">
+                        <strong>Danh sách Tours</strong>
+                    </h2>
                 </div>
-                <div class="row">
-                    <div class="col-sm-7">
-                    </div>
-                    <div class="col-sm-5 mg-t-10">
-                        <!-- social -->
-                        <ul class="list-inline">
-                            <li class="fb-button">
-                                <div class="fb-like" data-href="/c65/khach-san-tai-da-nang.html"
-                                     data-layout="button_count"
-                                     data-action="like" data-show-faces="false" data-share="true"></div>
-                            </li>
-                            <li class="gp-button">
-                                <div class="g-plusone" data-size="medium"
-                                     data-href="/c65/khach-san-tai-da-nang.html"></div>
-                            </li>
-                        </ul>
-                        <!-- /.social -->
-                    </div>
-                </div>
-            </div>
-            <!-- /.page-header -->
-            <!-- /tablet -->
-            <div class="group-filter">
-                <div class="device-pc-none mg-r-20">
-                    <a class="btn btn-blue btn-filter-show" href="javascript:;">
-                        <i class="fa fa-bars"></i> Bộ lọc
-                    </a>
-                </div>
-
             </div>
             <div class="product product-tour">
                 <!-- item-tour -->
@@ -160,10 +150,13 @@
                         </div>
                         <!-- /.product-left-content -->
                         <div class="product-right-content col-sm-3">
-                            <div class="box-review">
-                                <span class="rate">8</span>
-                                <span class="rate-info">Xuất sắc</span>
-                            </div>
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
                             <div class="box-price"style="background:#FFEBCD">
                                 <div class="item-price">
                                     <br>

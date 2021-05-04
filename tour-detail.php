@@ -21,12 +21,12 @@
         WHERE 1 and t_status = 1 and  t_sale > 0 LIMIT 5";
 
     $tour_sale = DB::fetchsql($sql_sale);
-
+    //Get,post: phương thức gửi request
     // xử lý comment sản phẩm 
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         
-        $content = Input::get('cmt_content');
+        $content = Input::get('cmt_content'); // Lấy nội dung comment
         $data = 
         [
             'c_user_id'    => $_SESSION['id_user'] ,
@@ -48,13 +48,12 @@
             // gán session thông báo thành công
             $_SESSION['success'] = "Thêm mới thành công ";
             $_SESSION['flag_comment'] = 1;
+            //redirect: điều hương trang
             header("Location: ".'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);exit();
         }
     }
 
     // lay danh sach comment cua tour 
-
-    // lấy danh sách comment của sản phẩm 
     $sqlcmt  = "SELECT comments.* , users.u_email  FROM comments 
         LEFT JOIN users ON users.id = comments.c_user_id WHERE 1  AND c_tour_id = ".$id." ORDER BY ID DESC lIMIT 6
     ";
@@ -65,7 +64,7 @@
             LEFT JOIN locations ON locations.id = tours.t_location_id
             WHERE t_status = 1 and  tours.t_location_id  = ".$tour['t_location_id']." AND tours.id != ".$id."
         ";
-
+    //query: câu truy vấn
     $tourInvolve = DB::fetchsql($sql);
 
 ?>
@@ -84,9 +83,14 @@
     <body class="page-tour-detail ">
        
         <?php include_once  __DIR__. '/layouts/inc_nav.php' ?>
+        <div class="slider-lg" style="background:#FFEBCD">
+           <div class="slider-content"style="background:#FFEBCD">
+              <div class="bg-full" style="background:url(<?= path_url() ?>/public/images/logo/li.jpg) center top">
+              </div>
+           </div>
+        </div>
         <div class="container">
             <div class="row">
-                <!-- breadcrumb -->
                 <div class="col-xs-12" import-html="breadcrumb">
                     <div class="breadcrumb-scroll">
                         <ul class="breadcrumb scroll-y ps-container ps-active-x" id="breadcrumb-scroll">
@@ -97,45 +101,17 @@
                         </ul>
                     </div>
                 </div>
-                <!-- /.breadcrumb -->
-                <!-- box-search -->
-                <!-- /.box-search -->
-                <!-- sidebar -->
                 <div id="sidebar-scroll">
-                    <div class="sidebar-top">
-                        <button class="btn btn-blue btn-close device-mb-show">Áp dụng</button>
-                        <button class="btn btn-default btn-close device-pc-none">Đóng</button>
-                    </div>
                     <?php include_once  __DIR__. '/layouts/inc_sidebar.php' ?>
                 </div>
-                <!-- /.sidebar -->
-                <!-- content-right -->
                 <div class="col-md-9 filter_tg_tl">
-                    <!-- page-header -->
                     <div class="page-header">
-                        <h1 class="title-lg"><?= $tour['t_name'] ?></h1>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <!-- social -->
-                                <ul class="list-inline">
-                                    <li class="gp-button">
-                                        <div class="g-plusone" data-size="medium" data-href="/tour/9021-tour-du-lich-thanh-pho-nha-trang-trong-1-ngay.html"></div>
-                                    </li>
-                                </ul>
-                                <!-- /.social -->
-                            </div>
-                        </div>
+                        <h1 class="title-lg" style="color:black;font-size:30px;"><?= $tour['t_name'] ?></h1>
                     </div>
-                    <!-- /.page-header -->
-                    <!-- Quay lại version cũ -->
-                    <!-- slider -->
                     <div class="slider-sm">
                         <p style="text-align: center;" id="loading-slider"><img style="width: 100%; height: 500px;"
                             src="<?= path_url() ?>/uploads/tours/<?php echo $tour['t_images'] ?>"/>
-                        <p>
-                     
                     </div>
-                    <!-- /.slider -->
                     <div class="box">
                         <div class="box-body row">
                             <dl class="dl-horizontal mg-bt-0 col-sm-8">
@@ -276,13 +252,12 @@
                             
                         </div>
                     </div>
-                    <!-- /Đánh giá tour -->
                 </div>
-                <!-- /.content-right -->
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Danh sách tour liên quan</h2>
-                        <hr />
+                        <h2 class="title-sm text-uppercase h5" title="Tour du lịch phổ biến Việt Nam" align="center" style="color:red;font-size:30px;">
+                            <strong>Danh sách tour liên quan</strong>
+                        </h2>
                         <div class="product product-tour">
                             <div class="blog">
                                 <?php foreach($tourInvolve as $itemTour) :?>
@@ -315,20 +290,15 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <!-- /.blog-item -->
                                     </div>
                                 <?php endforeach ;?>
-                                <!-- show link parent if empty listing -->
 
                             </div>
                             <div class="clearfix"></div>
-                            <!-- /.product -->
                             <div class="box_paginator">
-                                <!-- panigation-center -->
                                 <div class="panigation-center">
                                     <?= Pagination::getListpage() ?>
                                 </div>
-                                <!-- /.panigation-center -->
                             </div>
                         </div>
                     </div>
@@ -337,8 +307,6 @@
         </div>
        
         <?php include_once  __DIR__. '/layouts/inc_footer.php' ?>
-        <!-- mytour:js -->
-<!--        <script src="/public/frontend/js/main.js" type="text/javascript" /></script>-->
 
         <script src="https://static.mytour.vn/themes/js/jquery.flexslider-min.js"></script>
         

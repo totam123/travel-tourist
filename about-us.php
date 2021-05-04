@@ -22,28 +22,19 @@
     </head>
     <body class="page-hotel-listing ">
         <?php include_once  __DIR__. '/layouts/inc_nav.php' ?>
-        <div id="searchfixed" class="search-fixed"style="background:#FFEBCD">
-            
+        <div class="slider-lg" style="background:#FFEBCD">
+           <div class="slider-content"style="background:#FFEBCD">
+              <div class="bg-full" style="background:url(<?= path_url() ?>/public/images/logo/li.jpg) center top">
+              </div>
+           </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12" import-html="breadcrumb">
-                    <div class="breadcrumb-scroll">
-                        <ul class="breadcrumb scroll-y ps-container ps-active-x" id="breadcrumb-scroll">
-                            <li><a href="/" class="events-tracking" data-category="Breadcrumbs" data-action="" data-label="non member">Về chúng tôi</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <?php include_once  __DIR__. '/layouts/inc_sidebar.php' ?>
-                <div class="col-md-9">
                     <div class="page-header">
                         <div class="clearfix">
-                            <h1 title="" class="title-lg pull-left">
-                                <a href="">Về chúng tôi</a>
-                            </h1>
-                            <small class="text-df" style="line-height:42px;padding-left:10px;">
-                                
-                            </small>
+                            <h2 title="" class="title-lg pull-left"style="color:blue;font-size:30px;">
+                            <strong>Giới thiệu về chúng tôi</strong>
+                            </h2>
                         </div>
                         <div class="row">
                             <div class="col-sm-7">
@@ -55,47 +46,39 @@
                                             data-layout="button_count"
                                             data-action="like" data-show-faces="false" data-share="true"></div>
                                     </li>
-                                    <li class="gp-button">
-                                        <div class="g-plusone" data-size="medium"
-                                            data-href="/c65/khach-san-tai-da-nang.html"></div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="group-filter">
-                        <div class="device-pc-none mg-r-20">
-                            <a class="btn btn-blue btn-filter-show" href="javascript:;">
-                            <i class="fa fa-bars"></i> Bộ lọc
-                            </a>
-                        </div>
-                    </div>
                     <div class="product product-tour">
-                        <div class="rtejustify"><span style="font-size:14px;"><strong> Công ty Lữ hành MyTour</strong> – Tổng Công ty Du lịch Hà Nội xin gửi tới Quý khách lời chào trân trọng và lời chúc sức khỏe, hạnh phúc, an khang - thịnh vượng!<br>
-                        Tổng Công ty Du lịch Hà Nội là doanh nghiệp nhà nước có vị thế hàng đầu trong các lĩnh vực: kinh doanh lữ hành quốc tế, khách sạn, nhà hàng, vận chuyển,&nbsp; xuất khẩu lao động… &nbsp;với hơn 50 năm xây dựng và trưởng thành, Công ty Lữ hành chúng tôi nhiều năm liền đạt danh hiệu “Top ten Lữ hành quốc tế” của Tổng cục Du lịch và hạng A1 “Top five” trong số ít các công ty lữ hành có số lượng khách Việt Nam đi nước ngoài đông nhất của hãng Hàng không Quốc gia Việt Nam (Vietnamairlines)…</span><br>
-                            &nbsp;
+                        <div class="rtejustify"><span style="font-size:18px;    "><strong> Công ty CP TM DV Du lịch TAM ( gọi tắt là TAM Travel)</strong> kính chào quý khách, cảm ơn quý khách đã quan tâm và sử dụng dịch vụ của TAM Travel trong suốt thời gian qua.<br>
+                        Trải qua 4 năm hình thành và phát triển, TAM Travel tự hào đã trở thành Công ty Du lịch uy tín tại Việt Nam nhiều năm liền. Sau những biến động thăng trầm của ngành du lịch nói riêng và kinh tế Việt Nam nói chung, TAM Travel vẫn vững vàng, sẵn sàng đương đầu với thử thách và luôn cải tiến, đem đến cho quý khách hàng những dịch vụ tốt nhất với chi phí hợp lý nhất.</span><br>
+                        &nbsp;
                         </div>
 
-                        <div class="rtejustify"><span style="font-size:14px;"> Trong xu thế hội nhập, để không ngừng đáp ứng nhu cầu tham quan, học tập, khảo sát, tham dự hội chợ, triển lãm, hội thảo, giao lưu và hợp tác ngày càng cao của Quý khách, với phương châm <strong>“Tất cả vì sự hài lòng của khách hàng”,</strong> chúng tôi xin trân trọng giới thiệu tới Quý khách các chương trình <strong>“Vòng quanh Thế giới” và "Đất nước muôn màu". </strong><br>
-                        Hy vọng rằng, đây sẽ là những thông tin bổ ích và thiết thực về các sản phẩm du lịch tiêu biểu và hấp dẫn đến hấu hết các thắng cảnh của Tổ quốc và các quốc gia trên thế giới mà công ty chúng tôi đã và đang thực hiện rất thành công.<br>
-                        Hãy đến với chúng tôi để được <strong>“thỏa mãn ước mơ du lịch - khám phá năm châu bốn biển”.</strong><br>
-                        <strong>
-                        Công ty Lữ hành chúng tôi</strong> - Tổng Công ty Du lịch Hà Nội rất hân hạnh được nồng nhiệt chào đón và đồng hành cùng Quý khách.</span>
+                        <div class="rtejustify"><span style="font-size:18px;"> Hiện nay, TAM Travel có hệ thông chi nhánh khắp toàn quốc cùng tổng số lượng gồm 200 nhân viên chính thức và 300 cộng tác viên. Qua 4 năm phục vụ, TAM Travel tự hào được nhiều khách hàng và đối tác lớn tin tưởng lựa chọn bởi đem đến <strong>những giá trị:</strong>
+                        <li>Liên tục khai thác các điểm tham quan mới tạo nên sự chất lượng và hấp dẫn trên các hành trình du lịch</li> 
+                        <li>Luôn luôn cập nhật và sáng tạo các trò chơi vận động mới lạ, độc đáo, hấp dẫn tạo nên sự nhiệt huyết, máu lửa và giá trị khác biệt trong từng chương trình du lịch</li> 
+                        <li>Luôn cam kết tạo nên giá trị đồng hành giữa chất lượng và chi phí nhằm làm hài lòng quý khách hàng</li> 
+                        <li>Sự chọn lọc kỹ càng và không ngừng nâng cao chất lượng dịch vụ phương tiện vận chuyển, nơi lưu trú và dịch vụ ăn uống, … để quý khách luôn được an tâm, thoải mái nhất trên mỗi hành trình</li> 
+                        <li>Dịch vụ chăm sóc khách hàng chu đáo: Tư vấn miễn phí; Hỗ trợ 24/24; Đa phương thức tiếp cận</li></span>
+                        &nbsp;
+                        </div>
+                        <div class="rtejustify"><span style="font-size:18px;    "><strong> Sẵn sàng đương đầu với thách thức, thay đổi để bắt kịp xu hướng</strong> <br>
+                        Năm 2020 - 2021 là một năm đầy thách thức đối với ngành du lịch nói riêng và kinh tế toàn cầu nói chung do sự ảnh hưởng của đại dịch Covid-19. Trong bối cảnh khó khăn chung do dịch bệnh, Ban lãnh đạo TAM Travel đã có sự điều chỉnh về nhân sự và thay đổi định hướng kinh doanh nhằm phù hợp với xu hướng du lịch mới.<br>
+                        </span>
+                        &nbsp;
+                        </div>
+                        <div class="rtejustify"><span style="font-size:18px;    "><strong> Khát vọng vươn ra thế giới</strong> <br>
+                        Trong suốt 4 năm hoạt động, tập thể công ty TAM Travel luôn không ngừng nỗ lực sáng tạo và đổi mới, nhằm tạo nên những sản phẩm, dịch vụ có chất lượng và giá thành tốt nhất gửi đến quý khách hàng. Trong tương lai, TAM Travel mong rằng tiếp tục nhận được nhiều hơn nữa sự tin yêu của quý khách hàng, đối tác. Đặc biệt, đưa được thương hiệu TAM Travel lên vị trí số 1 ở thị trường du lịch trong nước và vươn mạnh mẽ ra thị trường quốc tế.<br>
+                        </span>
+                        &nbsp;
+                        </div>
                     </div>
-                    </div>
-                </div>
-
             </div>
         </div>
         <div class="footer">
             <?php include_once  __DIR__. '/layouts/inc_footer.php' ?>   
-        </div>
-        <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=vi-VN&key=AIzaSyB-NX6fMciZIPFTLgZvmQIHF2Arws4V-Lk"></script>
-        <div class="modal modal-blue fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                </div>
-            </div>
         </div>
     </body>
 </html>

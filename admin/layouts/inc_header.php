@@ -1,7 +1,7 @@
 <header class="main-header">
 	<a href="<?= path_url() ?>" target="_blank" class="logo">
     	<span class="logo-mini"></span>
-        <span class="logo-lg"><b><?= INFO_NAME ?></b></span>
+        <span class="logo-lg"></span>
     </a>
     <nav class="navbar navbar-static-top">
     	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
