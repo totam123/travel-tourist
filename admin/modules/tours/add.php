@@ -49,7 +49,7 @@
             $upload_image = upload_image('t_images');
             if (!isset($upload_image['code']))
             {
-               $errors['t_images'] = "  Lỗi file ảnh hoạc định dạng ảnh không đúng ";
+               $errors['t_images'] = "  Lỗi file ảnh hoặc định dạng ảnh không đúng ";
             }else
             {
                 $t_images = $_SESSION['t_images'] = $upload_image['name'];

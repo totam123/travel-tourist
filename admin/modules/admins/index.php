@@ -1,6 +1,6 @@
 <?php
     $modules = 'admins';
-    $title_global = 'Danh sách quản lý Admins';
+    $title_global = 'Danh sách Admins';
     require_once __DIR__ .'/../../autoload.php';
 
     // level = 1 || cap do cong tac vien

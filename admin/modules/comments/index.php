@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="form-group col-sm-3">
                                     <input type="submit" value="Tìm Kiếm" class="btn btn-xs btn-success">
-                                    <a  href="index.php" class="btn btn-xs btn-danger"> Làm mới<a/>
+                                    <a  href="index.php" class="btn btn-xs btn-danger"> Làm mới</a>
                                 </div>
                                 
                                 

@@ -128,7 +128,7 @@
                             <?php endif ; ?>
                         </div>
                         <div class="form-group text-center mg-bt-20">
-                            <p class="help-block" style="font-size: 10px">Chọn đăng ký là bạn đã đồng ý với các <a href="">Điều khoản dịch vụ</a> của TAM Travel</p>
+                            <p class="help-block" style="font-size: 16px">Chọn đăng ký là bạn đã đồng ý với các <a href="">Điều khoản dịch vụ</a> của TAM Travel</p>
                             <button type="submit" class="events-tracking btn btn-block-center btn-blue" data-category="Sign up" data-action="Signup" data-label="">Đăng ký</button>
                         </div>
                     </form>
